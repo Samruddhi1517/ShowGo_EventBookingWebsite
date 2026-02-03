@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Book Tickets</title>
+    <script>
+        function calculateTotal() {
+            const ticketType = document.getElementById("ticket-type").value;
+            const quantity = document.getElementById("quantity").value;
+            let pricePerTicket = 0;
+
+            // Set price based on ticket type
+            if (ticketType === "general") {
+                pricePerTicket = 500; // General Admission price
+            } else if (ticketType === "vip") {
+                pricePerTicket = 1000; // VIP price
+            }
+
+            // Calculate total price
+            const totalPrice = pricePerTicket * quantity;
+            document.getElementById("total-price").innerText = totalPrice + "Rs";
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Book Your Tickets for the Event</h1>
+    </header>
+    <main>
+<nav>
+        <form action="process_payment.php" method="POST">
+            <label for="ticket-type">Ticket Type:</label>
+            <select id="ticket-type" name="ticket-type" required onchange="calculateTotal()">
+                <option value="general">General Admission - 500 Rs</option>
+                <option value="vip">VIP - 1000 Rs</option>
+            </select><br><br>
+
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" value="1" required onchange="calculateTotal()"><br><br>
+
+            <h2>Total Price:</h2>
+            <p id="total-price">500 Rs</p><br>
+
+            <h2>Payment Information</h2>
+            <label for="card-number">Card Number:</label>
+            <input type="text" id="card-number" name="card-number" required><br><br>
+
+            <label for="expiration">Expiration Date:</label>
+            <input type="text" id="expiration" name="expiration" placeholder="MM/YY" required><br><br>
+
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" required><br><br>
+
+            <button type="submit">Complete Booking</button>
+        </form>
+</nav>
+    </main>
+    <footer>
+        <p>&copy; 2024 Event Management</p>
+    </footer>
+</body>
+</html>
